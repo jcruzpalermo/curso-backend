@@ -6,6 +6,14 @@ class Usuario {
         this.mascotas = mascotas;
     }
 
+    // class Usuario { posible tambien 
+    //     constructor(nombre, apellido) {
+    //         this.nombre = nombre;
+    //         this.apellido = apellido;
+    //         this.libros = [];
+    //         this.mascotas = [];
+    //     }
+
     getFullName() {
         return `${this.nombre} ${this.apellido}`;
     }
@@ -15,11 +23,11 @@ class Usuario {
     }
 
     countMascotas() {
-        return this.pets.length;
+        return this.mascotas.length;
     }
 
     addBook(nombre, autor) {
-        this.libros.push({ nombre, autor: autor })
+        this.libros.push({ nombre, autor });
     }
 
     getBookNames() {
@@ -30,8 +38,6 @@ class Usuario {
 const usuario1 = new Usuario(
     "Juan Cruz",
     "Palermo",
-    [{ nombre: "Asi ganamos", autor: "Carlos Salvador Bilardo"}],
-    ["canario", "conejo"]
 );
 
 console.log(usuario1.getFullName());
