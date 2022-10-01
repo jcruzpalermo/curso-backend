@@ -37,7 +37,7 @@ class Container {
 
         } catch (error) {
             console.log(error);
-        } 
+        }
     }
 
     async getById(id) {
@@ -46,7 +46,7 @@ class Container {
 
             const foundElement = elements.find((element) => element.id == id)
 
-            if(!foundElement) return null
+            if (!foundElement) return null
 
             return foundElement
 
@@ -74,6 +74,24 @@ class Container {
     async deleteAll() {
         try {
             await fs.promises.writeFile(this.filePath, JSON.stringify([], null, 3))
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async update({ id, newData }) {
+        try {
+            const elements = await this.getAll();
+
+            const foundElementIndex = elements.findIndex((element) => element.id == id);
+
+            if (foundElementIndex === -1) return "Element not found";
+            const foundElement = elements[foundElementIndex];
+
+            elements[foundElementIndex] = {...foundElement, ...newData,};
+
+            await fs.promises.writeFile(this.filePath, JSON.stringify(elements, null, 3));
+            
         } catch (error) {
             console.log(error);
         }
